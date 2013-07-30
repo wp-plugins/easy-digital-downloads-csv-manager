@@ -1,5 +1,5 @@
 === Easy Digital Downloads - CSV Manager ===
-Contributors: mordauk, chriscct7
+Contributors: ghost1227, mordauk, chriscct7
 Donate link: 
 Tags: easy digital downloads, edd, csv, importer, exporter
 Requires at least: 3.3
