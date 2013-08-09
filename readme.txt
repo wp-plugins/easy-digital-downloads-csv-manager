@@ -34,6 +34,9 @@ None yet!
 
 == Changelog ==
 
+= Version 1.0.2 =
+* Minor fix to import/export handler
+
 = Version 1.0.1 =
 * Fixed import/export bug
 
