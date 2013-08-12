@@ -462,6 +462,7 @@ if( !class_exists( 'EDD_CSV_Importer' ) ) {
                                     'file'  => $file
                                 );
                             }
+
                         } else {
                             $file_path = $file;
                         }
@@ -557,6 +558,10 @@ if( !class_exists( 'EDD_CSV_Importer' ) ) {
 
                     if( $hide_link && !empty( $new_row[ $hide_link ] ) )
                         update_post_meta( $post_id, '_edd_hide_purchase_link', $new_row[ $hide_link ] );
+
+                    if( !empty( $final_files ) )
+                        update_post_meta( $post_id, 'edd_download_files', $final_files );
+
 
                     // Attach image
                     if( $image ) {
