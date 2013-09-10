@@ -46,7 +46,7 @@ if( !class_exists( 'EDD_CSV_Exporter' ) ) {
          */
         private function init() {
             // Add metabox
-            add_action( 'edd_export_import_top', array( $this, 'add_metabox' ) );
+            add_action( 'edd_tools_before', array( $this, 'add_metabox' ) );
 
             // Process export
             add_action( 'edd_export_csv', array( $this, 'export' ) );
