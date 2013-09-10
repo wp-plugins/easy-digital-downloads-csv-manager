@@ -4,7 +4,7 @@ Donate link:
 Tags: easy digital downloads, edd, csv, importer, exporter
 Requires at least: 3.3
 Tested up to: 3.5.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ Yes, just place the complete, public URL to the file inside of the CSV.
 
 
 == Changelog ==
+
+= Version 1.0.5 =
+* Revert 1.0.4 - EDD 1.8 isn't out yet!
 
 = Version 1.0.4 =
 * Moved to new EDD Tools menu
