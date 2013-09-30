@@ -3,8 +3,8 @@ Contributors: ghost1227, mordauk, chriscct7
 Donate link:
 Tags: easy digital downloads, edd, csv, importer, exporter
 Requires at least: 3.3
-Tested up to: 3.5.2
-Stable tag: 1.0.5
+Tested up to: 3.6.1
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,16 @@ The name of the files must match the filename you have specified in the CSV exac
 
 2. Can I import files from Amazon S3 or other external server?
 
-Yes, just place the complete, public URL to the file inside of the CSV.
+If you are using the [Amazon S3 extension](https://easydigitaldownloads.com/extensions/amazon-s3/):
+
+1. Upload the files to your Amazon S3 bucket. It must be the same bucket as you have specified in your Amazon S3 settings in Downloads > Settings > Misc.
+2. Enter the file path in your CSV column like this: `folder-name/file.mp3`. Do not include the bucket name in the path, only the name of any folders and the file itself.
+
+If you are NOT using the Amazon S3 extension:
+
+1. Upload the files to your Amazon S3 bucket.
+2. Set all files to be publicly accessible.
+3. Place the complete file URLs into the CSV.
 
 
 == Screenshots ==
@@ -41,6 +50,10 @@ Yes, just place the complete, public URL to the file inside of the CSV.
 
 
 == Changelog ==
+
+= Version 1.0.6 =
+* Add support for EDD 1.8 Tools menu and maintain backwards compatibility
+* Add support for importing files with the Amazon S3 extension
 
 = Version 1.0.5 =
 * Revert 1.0.4 - EDD 1.8 isn't out yet!
