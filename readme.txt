@@ -52,10 +52,8 @@ If you are NOT using the Amazon S3 extension:
 
 
 == Changelog ==
-
 = Version 1.2.1 =
-* Fixed featured image import
-* Better error messages
+* FIX: XSS vulnerability in query args
 
 = Version 1.2.0 =
 * Added payment history exporter
