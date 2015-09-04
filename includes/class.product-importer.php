@@ -611,11 +611,13 @@ if( !class_exists( 'EDD_CSV_Product_Importer' ) ) {
 
 
                     // Store image in array for later use
-                    $final_images[] = array(
-                        'name'  => basename( $file_path ),
-                        'path'  => $file_path,
-                        'url'   => str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $file_path )
-                    );
+                    if( isset( $file_path ) ) {
+                        $final_images[] = array(
+                            'name'  => basename( $file_path ),
+                            'path'  => $file_path,
+                            'url'   => str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $file_path )
+                        );
+                    }
                 }
 
 
@@ -661,10 +663,15 @@ if( !class_exists( 'EDD_CSV_Product_Importer' ) ) {
                         );
 
                         $upload_dir = wp_upload_dir();
+                        $attachment_url = false;
 
                         if( stristr( $final_images[0]['path'], $upload_dir['basedir'] ) ) {
                             $attachment_url = str_replace( $upload_dir['basedir'] . '/', '', $final_images[0]['path'] );
+                        } elseif( stristr( $final_images[0]['url'], $upload_dir['baseurl'] ) ) {
+                            $attachment_url = $final_images[0]['url'];
+                        }
 
+                        if( $attachment_url ) {
                             $attachment_id = wp_insert_attachment( $attachment, $attachment_url, $post_id );
 
                             if( !is_wp_error( $attachment_id ) && $attachment_id ) {
@@ -673,14 +680,16 @@ if( !class_exists( 'EDD_CSV_Product_Importer' ) ) {
                                 $attachment_data = wp_generate_attachment_metadata( $attachment_id, $final_images[0]['path'] );
                                 wp_update_attachment_metadata( $attachment_id, $attachment_data );
                             } else {
-                                $image_errors = serialize( $final_images[0]['path'] );
+                                $image_errors[] = array( 'file' => $final_images[0]['path'] );
+                                $image_errors = serialize( $image_errors );
                                 set_transient( 'edd_image_errors', $image_errors );
 
                                 wp_safe_redirect( add_query_arg( array( 'tab' => 'import_export', 'type' => 'products', 'step' => '1', 'errno' => '4' ), $this->page ) );
                                 exit;
                             }
                         } else {
-                            $image_errors = serialize( $final_images[0]['path'] );
+                            $image_errors[] = array( 'file' => $final_images[0]['path'] );
+                            $image_errors = serialize( $image_errors );
                             set_transient( 'edd_image_perms_errors', $image_errors );
 
                             wp_safe_redirect( add_query_arg( array( 'tab' => 'import_export', 'type' => 'products', 'step' => '1', 'errno' => '5' ), $this->page ) );
